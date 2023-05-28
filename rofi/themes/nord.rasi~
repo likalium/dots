@@ -1,0 +1,126 @@
+// Written from scratch by likalium :)
+// But note that I read the man page all along the creation of this file
+// Also thx to the creators and contributors of the awesome Nord palette
+// Nord: https://www.nordtheme.com/	Rofi-wayland: https://github.com/lbonn/rofi
+
+@import "~/.config/rofi/themes/nord_colors.rasi"
+
+* {
+    background-color: @nord0;
+}
+
+num-rows, num-filted-rows, textbox-current-entry, icon-current-entry, scrollbar {
+    enabled: false;
+}
+
+window {
+    enabled: true;
+    border: 1px;
+    border-radius: 5px;
+    border-color: @nord9;
+    location: center;
+    anchor: center;
+    width: 700px;
+    font: "JetBrains Mono 10";
+    transparency: "screenshot";
+    children: [ mainbox ];
+}
+
+mainbox{
+    enabled: true;
+    orientation: vertical;
+    children: [ inputbar, textbox-quote, listview, mode-switcher ];
+}
+
+textbox-quote {
+    enabled: true;
+    expand: false;
+    // content: "Software is like sex: it's better when it's free\n\t\t\t\t\t\t\t -Linus Torvalds";
+    content:  "Intelligence is the ability to avoid doing work, yet getting the work done.\n\t\t\t\t\t\t\t\t\t\t       -Linus Torvalds";
+    font: "Josefin Sans 15";
+    text-color: @nord4;
+    margin: 10px;
+    border: 1px;
+    border-color: @nord9;
+    padding: 10px;
+    border-radius: 3px;
+    vertical-align: 0;
+    horizontal-align: 0;
+}
+
+prompt {
+    enabled: true;
+    margin: 10px;
+    background-color: @nord2;
+    font: "Phosphor 15";
+    text-color: @nord12;
+}
+
+inputbar {
+    enabled: true;
+    border: 0px 0px 1px 0px;
+    border-color: @nord9;
+    background-color: @nord2;
+}
+
+entry {
+    enabled: true;
+    margin: 10px;
+    background-color: @nord2;
+    text-color: @nord6;
+}
+
+case-indicator {
+    enabled: true;
+    background-color: @nord2;
+}
+
+listview {
+    enabled: true;
+    background-color: @nord0;
+    padding: 2px;
+    columns: 2;
+    fixed-height: true;
+    lines: 10;
+    dynamic: false;
+    cycle: true;
+    spacing: 5px;
+}
+
+element, element-icon, element-index {
+    enabled: true;
+    background-color: @nord0;
+    border: 1px;
+    border-radius: 5px;
+}
+
+element-text {
+    enabled: true;
+    vertical-align: 0.5;
+    text-color: @nord6;
+    highlight: underline;
+}
+
+element-icon {
+    size: 25px;
+}
+
+element.selected, element-icon.selected, element-text.selected {
+    background-color: @nord15;
+    text-color: @nord1;
+}
+mode-switcher {
+    enabled: true;
+    font: "Phosphor 15";
+    border: 1px 0px 0px 0px;
+    border-color: @nord9;
+}
+button {
+    font: "Phosphor 15";
+    margin: 5px;
+    text-color: @nord6;
+}
+
+button.selected {
+    text-color: @nord12;
+}

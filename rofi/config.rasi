@@ -1,0 +1,34 @@
+// Written from scratch by likalium :)
+// But note that I entirely read the manpage so thx to it
+
+
+configuration {
+    // General
+    modes: "drun,run,ssh,window,filebrowser";
+    scroll-method: 1;
+    normalize-match: true;
+    show-icons: true;
+    icon-theme: "Zafiro-Icons-Dark";
+    markup: true;
+    normal-window: false;
+    window-match-fields: "all";
+    // Apparence
+    display-ssh: "";
+    display-window: "";
+    display-filebrowser: "";
+    display-drun: "";
+    display-run: "匿";
+    // Pattern
+    terminal: "rofi-sensible-terminal";
+    // Window switcher
+    window-format: "{c}";
+    // File browser
+    filebrowser {
+        directory: "/home/likalium";
+	sorting-method: true;
+	directories-first: true;
+	}
+}
+@theme "~/.config/rofi/themes/nord.rasi"
+
+
