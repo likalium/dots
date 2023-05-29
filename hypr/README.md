@@ -14,4 +14,4 @@ Requirements:
  - grimblast (optional - for screenshots) 
 
 # Note
-For any further help, check [Hyprland's wiki](https://wiki.hyprland.org)
+For any further help, check [Hyprland's wiki](https://wiki.hyprland.org). Also this config uses Hyprland **git** version, so maybe you'll must adapt it if you use another version (e.g the package in the `community repo` of Arch Linux). Again, refers to the hyprland wiki in the case.
