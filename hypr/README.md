@@ -12,3 +12,6 @@ Requirements:
  - [Bibata Modern classic](https://github.com/ful1e5/Bibata_Cursor) (optional - for the custom cursor - if u dont install it, change the setting to YOUR cursor, instead the cursor can be buggy)
  - hyprpicker ( optional - for colorpicking)
  - grimblast (optional - for screenshots) 
+
+# Note
+For any further help, check [Hyprland's wiki](https://wiki.hyprland.org)
