@@ -1,0 +1,16 @@
+#!/bin/bash
+bat=$(ls /sys/class/power_supply)
+if [ bat == "AC" ]; then
+	bat="None"
+else
+	bat=$(echo $bat | cut -d " " -f2)
+fi
+if [ "$1" == "--bat" ]; then
+	cat /sys/class/power_supply/$bat/capacity
+elif [ "$1" == "--status" ]; then
+	cat /sys/class/power_supply/$bat/status
+else
+	echo "--bat	To print the current battery level of charge"
+	echo "--status 	To print the current battery state"
+fi
+

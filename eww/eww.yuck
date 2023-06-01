@@ -1,4 +1,6 @@
 ;; Vars
+(defpoll bat :interval "2h" "bash ./scripts/battery.sh --bat")
+(defpoll bat.status :interval "10s" "bash ./scripts/battery.sh --status")
 (defpoll current_time :interval "1s" "date +%H:%M:%S")
 (defpoll day :interval "1h" "date +%d")
 (defpoll month :interval "24h" "date +%m")
@@ -7,34 +9,50 @@
 ;; Windows
 (defwindow bar
   :monitor 0
+  :exclusive true
   :geometry (geometry
              :x "0%"
              :y "0%"
              :width "100%"
-             :heght "10%"
-             :anchor "top left")
+             :heght "15%"
+             :anchor "top center")
   :stacking "fg"
-  :exclusive true
-  current_time)
+  (_left))
 (defwindow calendar
   :monitor 0
-  :geometry (geometry
-              :x "10%"
-              :y "20px"
-              :width "50px"
-              :heigth "100px"
-              :anchor "top right")
-  :stacking "fg"
   :exclusive false
+  :stacking "fg"
+  :geometry (geometry
+              :anchor "top right")
   (cal))
 
 ;; Widgets 
+(defwidget _left []
+  (box :halign "end" :valign "fill" :orientation "h" :spacing 10 :space-evenly false
+    (clock)
+    (_bat :battery bat :status bat.status)))
 (defwidget cal []
-  (calendar
-    :day day
-    :month month
-    :year year
-    :show-details true
-    :show-day-names true
-    :show-week-numbers false
-    :show-heading true))
+  (box
+    (calendar
+      :day day
+      :month month
+      :year year
+      :show-details true
+      :show-day-names true
+      :show-week-numbers false
+      :show-heading true)))
+(defwidget clock []
+  (box :valign "fill" :halign "end"
+    (button :onclick "bash ./scripts/pop.sh cal"
+    (label :text current_time))))
+
+(defwidget _bat [battery status]
+  (box :valign "fill" :halign "end"
+    (label :class "bat-icon" :text {battery == "AC" ? "":
+      status == "Charging" ? "" :
+      battery >= 90 ? "" :
+      battery >= 60 ? "" :
+      battery >= 30 ? "" :
+      battery >= 10 ? "" :
+      ""})
+    (tooltip "helo")))

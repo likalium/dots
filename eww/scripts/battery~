@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bat = ls /sys/class/power_supply
