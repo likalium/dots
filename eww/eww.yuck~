@@ -28,7 +28,7 @@
               :y "4%")
   (_cal))
 
-;; Widgets aggregators
+;; Widgets aggrgetors
 (defwidget _right []
   (box :halign "end" :valign "fill" :orientation "h" :spacing 10 :space-evenly false
     (_clock)
