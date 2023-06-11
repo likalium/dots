@@ -1,4 +1,4 @@
-# `:sparkles: **Like a dot** :sparkles:`
+# :sparkles: **Like a dot** :sparkles:
 # Hello
 Here you'll find my dotfiles, and a detailled description for each of them. I hope you'll like them!
 
