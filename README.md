@@ -1,5 +1,5 @@
 # :sparkles: **Like a dot** :sparkles:
-# Hello
+## Hello
 Here you'll find my dotfiles, and a detailled description for each of them. I hope you'll like them!
 
 > Note: Using them means you know how to manage them. So you can open issues but please, read documentation before complaining.
@@ -8,7 +8,7 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 <details>
   The [Mpd config](./mpd) and [Ncmpcpp config](./ncmpcpp) works together. I mean, you can use the Mpd config with another client, there's no problem, but this Mpd config was made for Ncmpcpp. That's all.
 
-  ## Requirements
+  ### Requirements
 
   - Mpd
   - Ncmpcpp
