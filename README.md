@@ -4,14 +4,48 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 
 > Note: Using them means you know how to manage them. So you can open issues but please, read documentation before complaining.
 > Also, dont forget to read the manpages. [Arch manpages](https://man.archlinux.org)
+
+## :computer: Eww \[WIP\]
+<details>
+  A topbar made with Eww. It was made for my (small) laptop, so feel free to adapt it to your screen. Note that it was made for wayland, so you must made some changes to make it work on X11.
+  
+  ### Requirements
+  
+  - Eww built with wayland support
+  
+  ### Useful infos
+  
+  > The weather widget needs you to have a OpenWeatherMap account (for access to the API). Create one [here](https://home.openweathermap.org/users/sign_up). Also you'll need your latitude and longitude: get them [here](https://www.latlong.net/)
+  
+  **Documentation:** [Eww official documentation](https://elkowar.github.io/eww/eww.html) - [dharmx powermenu tutorial](https://dharmx.is-a.dev/eww-powermenu/)
+  
+  ### TODO
+  
+  - Finish this bar lmao
+  - A Eww powermenu
+</details>
+
+## :star: Hyprland config
+<details>
+  A Hyprland config using the [Nord colorscheme](https://www.nordtheme.com/). Don't forget to check the `hypr/hyprbinds` file to know all binds (if fact it's way better to check all files, but at least you must know the binds since without them you'll not be able to use this config).
+  
+  ### Requirements
+  
+  - The latest Hyprland (in fact you can use an older hyprland, but you'll probably lack some functionnalities)
+  - Kitty (you don't ABSOLUTELY need it but it's a default terminal for this config, so it's useful)
+  
+  ### Useful infos
+  > Most important bindings (if you're absolutely lost): `Super+Return` opens Kitty; `Super+Q` closes Hyprland.
+</details>
 ## :notes: Mpd & Ncmpcpp
 <details>
-  The [Mpd config](mpd) and [Ncmpcpp config](ncmpcpp) works together. I mean, you can use the Mpd config with another client, there's no problem, but this Mpd config was made for Ncmpcpp. That's all.
+  The Mpd config and Ncmpcpp config works together. I mean, you can use the Mpd config with another client, there's no problem, but this Mpd config was made for Ncmpcpp. That's all.
 
   ### Requirements
 
   - Mpd
   - Ncmpcpp
+  
   ### Useful infos
   
   > By default, there's a fifo output (for the Ncmpcpp visualizer), a pipewire output, and a pulseaudio output. Feel free to add or remove some of them.
