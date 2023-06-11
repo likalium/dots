@@ -1,6 +1,7 @@
 <p align='center'>`.Like a dot.`</p>
 # Hello
 Here you'll find my dotfiles, and a detailled description for each of them. I hope you'll like them!
+
 > Note: Using this means you know how to manage this. So you can open issues but please, read documentation before complaining.
 
 ## :notes: Mpd & Ncmpcpp
