@@ -1,4 +1,5 @@
-<p align='center'>`.Like a dot.`</p>
+<p align='center'> :sparkles: .Like a dot. :sparkles: </p>
+
 # Hello
 Here you'll find my dotfiles, and a detailled description for each of them. I hope you'll like them!
 
