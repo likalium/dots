@@ -50,10 +50,24 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   
   ### Useful infos
   
-  > By default, there's a fifo output (for the Ncmpcpp visualizer), a pipewire output, and a pulseaudio output. Feel free to add or remove some of them.
+  > By default, there's a fifo output (for the Ncmpcpp visualizer), a pipewire output, and a pulseaudio output. Feel free to add or remove some of them.\n
   This config addionaly requires you to create the `~/.mpd` directory, and to create a file named `database` inside. You can choose other names, but in this case you'll must change the config options to these new locations/filenames.
   This suposes that your music folder is `~/Music`. Don't forget to change it needed.
   
   **Documentation:** [Mpd Archwiki](https://wiki.archlinux.org/title/Music_Player_Daemon) - [Mpd Archwiki tips](https://wiki.archlinux.org/title/Music_Player_Daemon/Tips_and_tricks) - [Mpd Archwiki troubleshooting](https://wiki.archlinux.org/title/Music_Player_Daemon/Troubleshooting) - [Ncmpcpp archwiki](https://wiki.archlinux.org/title/Ncmpcpp)
 </details>
 
+## :telescope: Rofi
+<details>
+  This is a small configuration for the [Rofi wayland](https://github.com/lbonn/rofi) fork by lbonn which uses the [Nord](https://www.nordtheme.com/) color palette. There's nothing special about it, I made that, that's all.
+  
+  ### Requirements
+  - Rofi (wayland fork, or you'll must change some minor things)
+  - Phosphor Icons 2.0 (for the icons)
+  
+  ### Useful infos
+  
+  > The icon theme I use with this is Zafiro Icons Dark, i think it goes very well with it.
+  
+  **Documentation:** [Rofi wayland](https://github.com/lbonn/rofi) - [Rofi](https://github.com/davatorium/rofi)
+</details
