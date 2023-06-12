@@ -6,8 +6,10 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 > Also, dont forget to read the manpages. [Arch manpages](https://man.archlinux.org)
 
 ## :computer: Eww \[WIP\]
+
 <details>
-  A topbar made with Eww. It was made for my (small) laptop, so feel free to adapt it to your screen. Note that it was made for wayland, so you must made some changes to make it work on X11.
+  
+  A [topbar](./eww) made with Eww. It was made for my (small) laptop, so feel free to adapt it to your screen. Note that it was made for wayland, so you must made some changes to make it work on X11.
   
   ### Requirements
   
@@ -23,10 +25,12 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   
   - Finish this bar lmao
   - A Eww powermenu
+  
 </details>
 
 ## :star: Hyprland config
 <details>
+  
   A Hyprland config using the [Nord colorscheme](https://www.nordtheme.com/). Don't forget to check the `hypr/hyprbinds` file to know all binds (if fact it's way better to check all files, but at least you must know the binds since without them you'll not be able to use this config).
   
   ### Requirements
@@ -37,10 +41,12 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   
   ### Useful infos
   > Most important bindings (if you're absolutely lost): `Super+Return` opens Kitty; `Super+Q` closes Hyprland.
+  
 </details>
 
 ## :notes: Mpd & Ncmpcpp
 <details>
+  
   The Mpd config and Ncmpcpp config works together. I mean, you can use the Mpd config with another client, there's no problem, but this Mpd config was made for Ncmpcpp. That's all.
 
   ### Requirements
@@ -55,9 +61,11 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   This suposes that your music folder is `~/Music`. Don't forget to change it needed.
   
   **Documentation:** [Mpd Archwiki](https://wiki.archlinux.org/title/Music_Player_Daemon) - [Mpd Archwiki tips](https://wiki.archlinux.org/title/Music_Player_Daemon/Tips_and_tricks) - [Mpd Archwiki troubleshooting](https://wiki.archlinux.org/title/Music_Player_Daemon/Troubleshooting) - [Ncmpcpp archwiki](https://wiki.archlinux.org/title/Ncmpcpp)
+  
 </details>
 
 ## :telescope: Rofi
+
 <details>
   This is a small configuration for the [Rofi wayland](https://github.com/lbonn/rofi) fork by lbonn which uses the [Nord](https://www.nordtheme.com/) color palette. There's nothing special about it, I made that, that's all.
   
@@ -70,4 +78,5 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   > The icon theme I use with this is Zafiro Icons Dark, i think it goes very well with it.
   
   **Documentation:** [Rofi wayland](https://github.com/lbonn/rofi) - [Rofi](https://github.com/davatorium/rofi)
+  
 </details
