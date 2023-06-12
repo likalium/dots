@@ -66,8 +66,8 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 </details>
 
 ## :telescope: Rofi
-
 <details>
+  
   This is a [small configuration](./rofi) for the [Rofi wayland](https://github.com/lbonn/rofi) fork by lbonn which uses the [Nord](https://www.nordtheme.com/) color palette. There's nothing special about it, I made that, that's all.
   
   ### Requirements
