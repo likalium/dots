@@ -33,10 +33,12 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   
   - The latest Hyprland (in fact you can use an older hyprland, but you'll probably lack some functionnalities)
   - Kitty (you don't ABSOLUTELY need it but it's a default terminal for this config, so it's useful)
+  - All other stuff required by the bindings which launch apps (firefox,thunar, webcord) but feel free to change them
   
   ### Useful infos
   > Most important bindings (if you're absolutely lost): `Super+Return` opens Kitty; `Super+Q` closes Hyprland.
 </details>
+
 ## :notes: Mpd & Ncmpcpp
 <details>
   The Mpd config and Ncmpcpp config works together. I mean, you can use the Mpd config with another client, there's no problem, but this Mpd config was made for Ncmpcpp. That's all.
