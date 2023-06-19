@@ -1,17 +1,49 @@
 #!/bin/sh
+cal_lockfile="$HOME/.cache/eww_cal.lock"
+play_lockfile="$HOME/.cache/eww_play.lock"
+power_lockfile="$HOME/.cache/eww_power.lock"
 cal() {
-	lockfile="$HOME/.cache/eww_cal.lock"
-	run() {
-		eww open calendar
-	}
-	if [[ ! -f $lockfile ]]; then
-		touch "$lockfile"
+	if [[ ! -f $cal_lockfile ]]; then
+		touch "$cal_lockfile"
+		eww close player power
+		rm $HOME/.cache/eww*.lock
 		eww open calendar && echo "yay"
 	else
 		eww close calendar
-		rm "$lockfile" && echo "no more calendar"
+		rm "$cal_lockfile" && echo "no more date"
 	fi
 }
-if [ "$1" == cal ]; then
+player() {
+	if [[ ! -f $play_lockfile ]]; then
+		touch "$play_lockfile"
+		eww close calendar power
+		rm $HOME/.cache/eww*.lock
+		eww open player && echo "MUSIC HELL YEAHH"
+	else
+		eww close player
+		rm "$play_lockfile" && echo "huh bye ig"
+	fi
+}
+power() {
+	if [[ ! -f $power_lockfile ]]; then
+		touch "$power_lockfile"
+		eww close calendar player
+		rm $HOME/.cache/eww*.lock
+		eww open power && echo "the power is in your hands bro"
+	else
+		eww close power
+		rm "$power_lockfile" && echo "hmmmmmmmmm"
+	fi
+}
+
+if [ "$1" == "--cal" ]; then
 	cal
+elif [ "$1" == "--play" ]; then
+	player
+elif [ "$1" == "--power" ]; then
+	power
+else
+	echo "--cal 		to open calendar window and close all other windows"
+	echo "--play 		to open the player window and close all other windows"
+	echo "--player	to open the power window and close all other windows"
 fi
