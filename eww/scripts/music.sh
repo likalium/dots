@@ -7,7 +7,7 @@ touch /tmp/art.png
 
 manual_watch() {
 	while true; do
-		$1
+		$1 | grep -v "volume"
 		sleep 1
 	done
 }

@@ -1,7 +1,11 @@
+window {
+	background-color: transparent;
+}
 .power {
 	font-family: Phosphor-Bold;
 	font-size: 20px;
 	margin-left: -8px;
+	color: #c53b53;
 }
 
 .weather-icon {
@@ -10,13 +14,12 @@
 	color: #ffc777;
 }
 .bar {
-	background-color: rgba(255,255,255,0);
-	font-family: "JetBrainsMono NF";
+	font-family: "Quicksand Medium";
  }
 
 .right {
 
-	border-color: #ff757f;
+	border-color: #4fd6be;
 }
 .center {
 	border-color: #c099ff;
@@ -31,35 +34,30 @@
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 15px;
-
 }
 button {
-	background-color: rgba(0,0,0,0);
+	background-color: transparent;
 	border-width: 0px;
 	border-radius: 0px;
 	padding: 0px 2px;
 	margin: 0px;
 }
-.shutdown:hover {
-	color: #ff757f;
-}
-.disconnect:hover {
-	color: #ffc777;
-}
-.suspend:hover {
-	color: #c3e88d;
-}
-.lock:hover {
-	color: #4fd6be;
-}
-.reboot:hover {
-	color: #ff757f;
-}
 .clock {
 	font-family: "JetBrainsMono NF";
-}
-.clock:hover {
 	color: #82aaff;
+}
+.music {
+	color: #c3e88d;
+}
+.power:hover, .clock:hover, .music:hover, .powerpop button:hover {
+	background-color: #4c566a;
+	border-radius: 10px;
+	margin: 2px -5px;
+	padding: 2px 5px 2px 5px;
+}
+.power, .clock, .music,.bat, .powerpop button {
+	padding: 2px 5px 2px 5px;
+	margin: 2px -5px;
 }
 .bat {
 	margin-left: -10px;
@@ -71,14 +69,22 @@ button {
 	border-radius: 15px;
 	padding: 10px;
 	background-color: #222436;
-
 }
 .image {
 	padding-bottom: 20px;
+	font-family: "Quicksand Medium";
 }
 .musicbar {
 	padding: 0px;
 	margin: 0px;
+	font-family: "JetBrainsMono NF";
+}
+.number {
+	background-color: #1b1d2b;
+	border-radius: 5px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	padding: 0px 5px;
 }
 .player-buttons {
 	font-size: 20px;
@@ -102,8 +108,21 @@ button {
 	border-color: rgba(255, 255, 255, 0);
 	padding: 5px;
 }
-.image button {
-	color: #c8d3f5;
+.powerpop {
+	border-color: #c099ff;
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 15px;
 	padding: 10px;
-	border-style: None;
+	background-color: #222436;
+	font-size: 16px;
+}
+.power_txt {
+	font-family: "Quicksand Medium";
+}
+.powerpop button {
+	margin-right: -5px;
+}
+.icon {
+	font-family: "Phosphor-Bold";
 }

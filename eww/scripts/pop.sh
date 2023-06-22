@@ -1,12 +1,12 @@
 #!/bin/sh
 cal_lockfile="$HOME/.cache/eww_cal.lock"
 play_lockfile="$HOME/.cache/eww_play.lock"
-power_lockfile="$HOME/.cache/eww_power.lock"
+power_lockfile="$HOME/.cache/eww_power_ext.lock"
 cal() {
 	if [[ ! -f $cal_lockfile ]]; then
 		rm $HOME/.cache/eww*.lock
 		touch "$cal_lockfile"
-		eww close player power
+		eww close player power_ext
 		eww open calendar && echo "yay"
 	else
 		eww close calendar
@@ -17,7 +17,7 @@ player() {
 	if [[ ! -f $play_lockfile ]]; then
 		rm $HOME/.cache/eww*.lock
 		touch "$play_lockfile"
-		eww close calendar power
+		eww close calendar power_ext
 		eww open player && echo "MUSIC HELL YEAHH"
 	else
 		eww close player
@@ -29,9 +29,9 @@ power() {
 		rm $HOME/.cache/eww*.lock
 		touch "$power_lockfile"
 		eww close calendar player
-		eww open power && echo "the power is in your hands bro"
+		eww open power_ext && echo "the power is in your hands bro"
 	else
-		eww close power
+		eww close power_ext
 		rm "$power_lockfile" && echo "hmmmmmmmmm"
 	fi
 }
