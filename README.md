@@ -14,6 +14,7 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
   ### Requirements
   
   - Eww built with wayland support
+  - Mpc & PlayerCTL & MpDris2 for the mini player
   
   ### Useful infos
   
