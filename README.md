@@ -8,11 +8,12 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 
 > IMPORTANT: Use Nvim, not Emacs, because Nvim is way better. In short, be smart, use nvim.
 
-## ToC
+<!-- toc -->
 - [Eww](#computer-eww-wip)
 - [Hyprland](#star-hyprland-config)
 - [Mpd & Ncmpcpp](#notes-mpd--ncmpcpp)
 - [Rofi](#telescope-rofi)
+<!-- toc end -->
 <br>
 
 ## :computer: Eww [WIP]
