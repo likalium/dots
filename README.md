@@ -11,6 +11,9 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 ## ToC
 - [Eww](#computer-eww-wip)
 - [Hyprland](#star-hyprland-config)
+- [Mpd & Ncmpcpp](#notes-mpd--ncmpcpp)
+- [Rofi](#telescope-rofi)
+<br>
 
 ## :computer: Eww [WIP]
 
