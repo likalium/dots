@@ -9,9 +9,9 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 > IMPORTANT: Use Nvim, not Emacs, because Nvim is way better. In short, be smart, use nvim.
 
 ## ToC
-[Eww](#:computer:-Eww-\[WIP\])
+[Eww](#eww)
 
-## :computer: Eww \[WIP\]
+## Eww
 
 <details>
   
