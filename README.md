@@ -1,4 +1,5 @@
-https://github.com/likalium/dots/blob/main/assets/dotfiles_logo.jpg
+![Likalium's doffiles logo](https://github.com/likalium/dots/blob/main/assets/dotfiles_logo.jpg)
+<br>
 ## Hello
 Here you'll find my dotfiles, and a detailled description for each of them. I hope you'll like them!
 
