@@ -1,0 +1,8 @@
+{
+    "workspace.checkThirdParty": false,
+    "diagnostics.globals": [
+        "vim",
+        "load_extension",
+        "g"
+    ]
+}
