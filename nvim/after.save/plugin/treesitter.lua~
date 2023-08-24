@@ -1,0 +1,14 @@
+-- Written from scratch by likalium
+
+require'nvim-treesitter.configs'.setup {
+	ensure_installed={"c","cpp","css","html","help","lua","markdown_inline,"python","query","vim","yuck"},
+	sync_install=false,
+	auto_install=true,
+	ignore_install={},
+
+	highlight={
+		enable=true,
+		disable={},
+		additional_vim_regex_highlighting=true,
+	},
+}
