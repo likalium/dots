@@ -4,7 +4,7 @@
 
 configuration {
     // General
-    modes: "drun,run,ssh,window,filebrowser";
+    modes: "drun,run,ssh,filebrowser";
     scroll-method: 1;
     normalize-match: true;
     show-icons: true;
@@ -13,11 +13,10 @@ configuration {
     normal-window: false;
     window-match-fields: "all";
     // Apparence
-    display-ssh: "";
-    display-window: "";
-    display-filebrowser: "";
-    display-drun: "";
-    display-run: "匿";
+    display-ssh: "";
+    display-filebrowser: "";
+    display-drun: "";
+    display-run: "";
     // Pattern
     terminal: "rofi-sensible-terminal";
     // Window switcher
