@@ -1,4 +1,0 @@
-> All this notes are here to define some sorting criteria in my nvim plugins. It's not a strong opinion, it's just an attempt to never get lost into my plugin files. They can change.
-- Tries to follow [rockerBOO/awesome-neovim](https://github.com/rockerBOO/awesome-neovim) categories
-- Every telescope extension, even if listen in some category into awesome-neovim, goes into the `dependencies` of telescope, into `fuzzy_finder.lua`
-:warning: Here a "telescope extension" is a plugin which don't have a dedicated configuration (it's only configuration options are in `require'telescope'.setup.extensions`)
