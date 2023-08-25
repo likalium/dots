@@ -314,7 +314,7 @@ return {
 					condition = function(self)
 						return self.has_changes
 					end,
-					provider = ") ",
+					provider = ")",
 				},
 			}
 			git = utils.surround(
