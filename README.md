@@ -5,6 +5,8 @@ Here you'll find my dotfiles, and a detailled description for each of them. I ho
 > Note: Using them means you know how to manage them. So you can open issues but please, read documentation before complaining.
 > Also, dont forget to read the manpages. [Arch manpages](https://man.archlinux.org)
 
+> Note: I'll add images, I promise
+
 > IMPORTANT: Use Nvim, not Emacs, because Nvim is way better. In short, be smart, use nvim.
 
 ## :computer: Eww \[WIP\]
@@ -16,7 +18,8 @@ A [topbar](./eww) made with Eww. It was made for my (small) laptop, so feel free
 ### Requirements
 
 - Eww built with wayland support
-- Mpc & PlayerCTL & MpDris2 for the mini player
+- Mpc & PlayerCTL for the mini player
+> I'll make it 100% mpc dependant (or 100% PlayerCTL dependant), otherwise it's pretty dumb imo
 
 ### Useful infos
 
@@ -87,15 +90,20 @@ A complete configuration for [The One True Text Editor](https://neovim.io/)! It 
 ## :telescope: Rofi
 <details>
 
-This is a [small configuration](./rofi) for the [Rofi wayland](https://github.com/lbonn/rofi) fork by lbonn which uses the [Nord](https://www.nordtheme.com/) color palette. There's nothing special about it, I made that, that's all.
+Currently, theres two rofi configurations: One with [nord](https://www.nordtheme.com/) color palette (first one), and one with [tokyonight](https://github.com/folke/tokyonight.nvim) color palette (newer). They are very different: that's wanted. In the first config I just did a "basic" config, I mean I didn't tried to be imaginative, I just did something meant to be simple and useful. In the newer one (idk if it's better), I tried to use other options. I really wanted to not repeat myself. I hope you'll like at least one of them!
 
 ### Requirements
-- Rofi (wayland fork, or you'll must change some minor things)
-- Phosphor Icons 2.0 (for the icons)
+- Common to the two configs:
+    - [Phosphor Icons 2.0](https://phosphoricons.com/) (as icons font)
+    - [Rofi wayland](https://github.com/lbonn/rofi) (or you'll must change some minor things)
+- Nord:
+    - [Zafiro Icons](https://github.com/zayronxio/Zafiro-icons) (for the icons)
+    - [JetBrains Mono](https://www.jetbrains.com/lp/mono/) (as text font)
+- Tokyonight    
+    - [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) (for the icons)
+    - [Inter](https://rsms.me/inter/) (as font)
 
 ### Useful infos
-
-> The icon theme I use with this is Zafiro Icons Dark, i think it goes very well with it.
 
 **Documentation:** [Rofi wayland](https://github.com/lbonn/rofi) - [Rofi](https://github.com/davatorium/rofi)
 

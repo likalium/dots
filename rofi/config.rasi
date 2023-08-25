@@ -20,7 +20,7 @@ configuration {
     display-drun: "";
     display-run: "";
 }
-@theme "~/.config/rofi/themes/nord.rasi" // Uncomment this line (and comment the line under) if you want nord theme
-// @theme "~/.config/rofi/themes/tokyonight.rasi"
+// @theme "~/.config/rofi/themes/nord.rasi" // Uncomment this line (and comment the line under) if you want nord theme
+@theme "~/.config/rofi/themes/tokyonight.rasi" // Loads Tokyonight theme
 
 
