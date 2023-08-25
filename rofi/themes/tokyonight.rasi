@@ -1,0 +1,67 @@
+// 	Rofi-wayland: https://github.com/lbonn/rofi
+
+@import "~/.config/rofi/themes/tokyonight_colors.rasi"
+
+* {
+	background-color: @bg-statusline;
+}
+window {
+	border-radius: 10px;
+	y-offset: 100px;
+	anchor: north;
+	location: north;
+}
+
+mainbox {
+	border-color: @cyan;
+	border: 1px;
+	border-radius: 10px;
+}
+
+inputbar {
+	margin: 5px 0;
+}
+prompt {
+	text-color: @purple;
+	font: "Phosphor 20";
+	padding: 14px 2px 0px 10px;
+}
+entry {
+	text-color: @fg-dark;
+	font: "Inter 15";
+	margin: 5px;
+	padding: 8px 15px;
+	background-color: @bg;
+	border-radius: 30px;
+	border-color: @comment;
+	border: 1px;
+}
+
+listview {
+	dynamic: true;
+	fixed-height: false;
+	require-input: true;
+}
+element {
+	padding: 2px 10px;
+}
+element-text {
+	font: "Inter 15";
+	text-color: @dark3;
+	padding: 2px 4px;
+}
+element-icon {
+	size: 24;
+	padding: 2px 4px;
+}
+element.selected, element-text.selected, element-icon.selected {
+	text-color: @teal;
+	background-color: @terminal-black;
+	border-radius: 10px;
+}
+listview {
+	padding: 10px;
+}
+listview.element {
+	background-color: @yellow;
+}

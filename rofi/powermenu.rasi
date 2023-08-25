@@ -1,5 +1,0 @@
-// Written from scratch by likalium :)
-
-configuration {
-	// General
-	modes: "drun";

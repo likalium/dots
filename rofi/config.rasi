@@ -4,30 +4,23 @@
 
 configuration {
     // General
-    modes: "drun,run,ssh,filebrowser";
+    modes: "drun,run,ssh";
     scroll-method: 1;
     normalize-match: true;
     show-icons: true;
-    icon-theme: "Zafiro-Icons-Dark";
+	icon-theme: "Papirus Dark"; // for Tokyonight theme
+	// icon-theme: "Zafiro-Icons-Dark" // For nord theme
     markup: true;
     normal-window: false;
     window-match-fields: "all";
     // Apparence
-    display-ssh: "";
+    display-ssh: "";
+    display-window: "";
     display-filebrowser: "";
     display-drun: "";
     display-run: "";
-    // Pattern
-    terminal: "rofi-sensible-terminal";
-    // Window switcher
-    window-format: "{c}";
-    // File browser
-    filebrowser {
-        directory: "/home/likalium";
-	sorting-method: true;
-	directories-first: true;
-	}
 }
-@theme "~/.config/rofi/themes/nord.rasi"
+@theme "~/.config/rofi/themes/nord.rasi" // Uncomment this line (and comment the line under) if you want nord theme
+// @theme "~/.config/rofi/themes/tokyonight.rasi"
 
 
