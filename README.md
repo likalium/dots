@@ -63,6 +63,9 @@ The Mpd config and Ncmpcpp config works together. I mean, you can use the Mpd co
 
 ### Useful infos
 
+> **Warning**
+> You'll need to use a [nerd font](https://www.nerdfonts.com/) (i recommend the jetbrains mono nerdfont) to have the icons working
+
 > By default, there's a fifo output (for the Ncmpcpp visualizer), a pipewire output, and a pulseaudio output. Feel free to add or remove some of them.<br>
 This config addionaly requires you to create the `~/.mpd` directory, and to create a file named `database` inside. You can choose other names, but in this case you'll must change the config options to these new locations/filenames.<br>
 This suposes that your music folder is `~/Music`. Don't forget to change it needed.
