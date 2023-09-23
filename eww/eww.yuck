@@ -1,36 +1,56 @@
-;; Vars
-(defpoll bat :interval "2h" "bash ./scripts/battery.sh --bat")
-(defpoll bat.status :interval "10s" "bash ./scripts/battery.sh --status")
-(defpoll current_time :interval "1s" "date +%H:%M:%S")
+;; VARS
+
+;; Hour
+(defpoll current_time :interval "1s" "date +%H:%M")
+(defpoll current_time_seconds :interval "1s" "date +%H:%M:%S")
 (defpoll day :interval "1h" "date +%d")
 (defpoll month :interval "24h" "date +%m")
 (defpoll year :interval "24h" "date +%Y")
-(defpoll temp :interval "1h" "bash ./scripts/weather.sh --temp")
-(defpoll icon :interval "1h" "bash ./scripts/weather.sh --icon")
-(defpoll weather :interval "1h" "bash ./scripts/weather.sh --text")
-(defpoll wifi :interval "5s" "nmcli -p -f general,wifi-properties device show wlan0 | grep -o connected")
-(deflisten title "bash ./scripts/music.sh --title")
-(deflisten album "bash ./scripts/music.sh --album")
-(deflisten playicon :initial "Stopped" "bash ./scripts/music.sh --playicon")
-(deflisten percenttime "bash ./scripts/music.sh --percenttime")
-(deflisten currenttime "bash ./scripts/music.sh --currenttime")
-(deflisten songlen "bash ./scripts/music.sh --length")
-(deflisten volume "bash ./scripts/music.sh --volume")
-(deflisten repeat "bash ./scripts/music.sh --repeat")
-(defpoll infos :interval "1s" "bash ./scripts/music.sh --infos")
-(defvar rev_power false)
-(defvar rev_weather false)
+(defvar seconds false)
 
-;; Windows
+;; Weather
+;;(defpoll temp :interval "1h" "bash ./scripts/weather.sh --temp")
+;;(defpoll icon :interval "1h" "bash ./scripts/weather.sh --icon")
+;;(defpoll weather :interval "1h" "bash ./scripts/weather.sh --text")
+
+;; (defpoll wifi :interval "5s" "nmcli -p -f general,wifi-properties device show wlan0 | grep -o connected")
+
+;; Music
+(defpoll title :interval "0.1s" "bash ./scripts/music.sh --title")
+(defpoll album :interval "0.1s" "bash ./scripts/music.sh --album")
+(defpoll percenttime :interval "0.1s" "bash ./scripts/music.sh --percenttime")
+(defpoll currenttime :interval "0.1s" "bash ./scripts/music.sh --currenttime")
+(defpoll songlen :interval "0.1s" "bash ./scripts/music.sh --length")
+(defpoll mpdvolume :interval "0.1s" "bash ./scripts/music.sh --volume")
+(defpoll repeat :interval "0.1s" "bash ./scripts/music.sh --repeat")
+(defpoll infos :interval "0.1s" "bash ./scripts/music.sh --infos")
+
+;; Volume
+(defpoll soundvolume :interval "0.1s" "bash ./scripts/volume.sh --soundvol")
+(defpoll soundmuted :interval "0.1s" "bash ./scripts/volume.sh --soundmute")
+(defpoll micvolume :interval "0.1s" "bash ./scripts/volume.sh --micvol")
+(defpoll micmuted :interval "0.1s" "bash ./scripts/volume.sh --micmute")
+
+;; Calendar
+(defpoll date :interval '120s' "date '+%d %B %Y'")
+(defvar cal_days '["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]')
+(defpoll cal_day :interval '120s' "date +%d")
+(deflisten cal_month "date +%B")
+(deflisten cal_year "date +%Y")
+(defpoll month_days :interval "10s" "sh ./scripts/calendar.sh --month")
+
+;; Revalers
+(defvar rev_sound false)
+(defvar rev_mic false)
+
+;; WINDOWS
+
 (defwindow bar :class "bar"
   :monitor 0
   :exclusive true
-  :stacking "bg"
+  :stacking "bottom"
   :geometry (geometry
-              :x "0%"
-              :y "0%"
               :width "100%"
-              :height "5%"
               :anchor "top center")
   (_bar))
 
@@ -40,21 +60,24 @@
   :stacking "fg"
   :geometry (geometry
               :anchor "top right"
-              :y "4%")
+              :y "6px"
+              :x "27px")
   (_cal))
 
-(defwindow meteo
-  :monitor 0
-  :exclusive false
-  :stacking "fg"
-  :geometry (geometry :anchor "top left" :y "90%" :width "25%" :height "10%")
-  (_weather_ext))
+;;(defwindow meteo
+;;  :monitor 0
+;;  :exclusive false
+;;  :stacking "fg"
+;;  :geometry (geometry :anchor "top left" :y "90%" :width "25%" :height "10%")
+;;  (_weather_ext))
 
 (defwindow player
   :monitor 0
   :exclusive false
   :stacking "fg"
-  :geometry (geometry :anchor "top center" :y "1%" :height "10%")
+  :geometry (geometry
+              :anchor "top center"
+              :y "6px")
   (_player))
 
 (defwindow power_ext
@@ -64,77 +87,56 @@
   :geometry (geometry :anchor "top right" :x "6px" :y "6px" :height "10%")
   (_power_popup))
 
-;; Widgets aggregators
+;; WIDGET AGGREGATORS
 (defwidget _bar []
-  (centerbox :orientation 'h'
-    (_left)
-    (_center)
-    (_right)))
-(defwidget _left []
-  (box :halign 'start' :valign 'fill' :orientation 'h' :space-evenly false :class "left" :spacing 12
-    (label :text {title})))
-(defwidget _right []
-  (box :halign "end" :valign "fill" :orientation "h" :space-evenly false :class "right" :spacing 12
-    (_clock)
-    (sep)
-    (_bat :battery {bat} :status bat.status)
-    (sep)
-    (_power)))
-(defwidget _center []
-  (eventbox :halign 'center' :orientation 'h' :space-evenly false :hexpand false :spacing 12 :onhover "bash scripts/music.sh --art"
-    (box :class "center"
+  (box :space-evenly true :hexpand true :halign "fill"
+    (box :halign 'left' :space-evenly false
+      (_sound)
+      (_mic))
+    (box :halign 'center'
+      (_musictitle))
+    (box :halign 'end' :space-evenly false :hexpand true
+      (_date)
+      (_clock)
+      (_power))))
+
+;; WIDGETS
+
+;; Left
+;; NOTE: You can use this widget but for now it doesn't have that much utility for me
+;;(defwidget _weather []
+;; (box :halign "center" :orientation "h" :space-evenly false
+;;   (box :halign 'center'
+;;     (label :class "weather-icon" :text "${icon}")
+;;     (label :text "${temp}"))))
+
+;; You may need to change the ID for the microphone. See the README.md for more help.
+(defwidget _sound []
+  (eventbox :onhover "eww update rev_sound=true" :onhoverlost "eww update rev_sound=false"
+    (box :space-evenly false :class 'box' :style 'border-color: #e0af68'
+      (button :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        (label :class "volume" :style {rev_sound ? "color: #c099ff" : "color: #2ac3de"} :text "${ soundmuted == true ? "" : soundvolume == 0 ? " " : soundvolume <= 0.1 ? "" : soundvolume <= 0.5 ? "" : "" }"))
+      (revealer :reveal {rev_sound} :transition "slideright"
+        (box :space-evenly false
+          (label :text " ")
+          (scale :min 0 :active true :max 101 :orientation 'h' :halign "fill" :hexpand true :width 100 :value { soundmuted ? 0 : soundvolume * 100} :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%")))
+      (label :class "number" :text "${round(soundvolume * 100, 0)}%"))))
+(defwidget _mic []
+  (eventbox :onhover "eww update rev_mic=true" :onhoverlost "eww update rev_mic=false"
+    (box :space-evenly false :class 'box' :style 'border-color: #e0af68'
+      (button :onclick "wpctl set-mute 49 toggle"
+        (label :class 'volume' :style { rev_mic ? "color: #c099ff" : "color: #2ac3de"}:text "${ micmuted == true ? ' ' : ''}"))
+      (revealer :reveal {rev_mic} :transition "slideright"
+        (box :space-evenly false
+          (label :text " ")
+          (scale :min 0 :active true :max 101 :orientation 'h' :halign "fill" :hexpand true :width 100 :value { micmuted ? 0 : micvolume * 100} :onchange "wpctl set-volume 49 {}%")))
+      (label :class "number" :text "${round(micvolume * 100, 0)}%"))))
+
+;; Center
+(defwidget _musictitle []
+    (box :class 'box' :style 'border-color: #9d7cd8'
       (button :class 'music' :onclick "bash scripts/pop.sh --play"
-        (box :orientation 'h' :space-evenly false :spacing 10
-          (label :text {title == "" ? "No Music" : title})
-          (label :class "pause" :text "${playicon == "playing" ? "" : playicon == "paused" ? "" : ""}"))))))
-
-;; Widgets
-(defwidget _cal []
-  (box
-    (calendar
-      :day day
-      :month month
-      :year year
-      :show-details true
-      :show-day-names true
-      :show-week-numbers false
-      :show-heading true)))
-
-(defwidget sep []
-  (box :width 5 :style "color: #4c566a; font-size: 20px"
-    (label :text "|")))
-(defwidget sep_power []
-  (box :style "margin: -5px 0px; color: #4c566a;font-size: 20px"
-    (label :text "───────")))
-(defwidget _clock []
-  (box :valign "center" :halign "end"
-    (button :class "clock" :onclick "bash ./scripts/pop.sh --cal"
-    (label :text current_time))))
-
-(defwidget _bat [battery status]
-  (box :valign "fill" :halign "end" :class "bat" :style {battery == "AC" ? "color: #ff757f" : status == "Charging" ? "color: #ffc777" : battery >= 90 ? "color: #82aaff" : battery >= 60 ? "color: #c3e88d" : battery >= 30 ? "color: #ff966c" : battery >= 10 ? "color: #ff757f" : "color: #ff757f"}
-    (label  :text {battery == "AC" ? "": status == "Charging" ? "" : battery >= 90 ? "" : battery >= 60 ? "" : battery >= 30 ? "" : battery >= 10 ? "" : ""})
-    (label :text {status})))
-
-(defwidget _power []
-  (button :class "shutdown power" :onclick "bash ./scripts/pop.sh --power" (label :text "")))
-
-(defwidget _power_popup []
-  (box :orientation 'v' :class "powerpop" :space-evenly false :vexpand false :halign "center"
-    (button :onclick "systemctl poweroff" (box :style "color: #c53b53" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Shutdown")))
-    (sep_power)
-    (button :onclick "systemctl reboot" (box :style "color: #ff966c" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Reboot")))
-    (sep_power)
-    (button :onclick "swaylock" (box :style "color: #ffc777" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Lock")))
-    (sep_power)
-    (button :onclick "systemctl suspend" (box :style "color: #c3e88d" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Suspend")))
-    (sep_power)
-    (button :onclick "loginctl terminate-user $USER" (box :style "color: #82aaff" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Disconnect")))))
-
-(defwidget _weather []
-  (eventbox :halign "start" :onhover "eww update rev_weather=true" :onhoverlost "eww update rev_weather=false"
-  (box :halign "center" :orientation "h" :space-evenly false
-    (button :onclick "eww open meteo" (label :halign "center" :class "weather-icon" :text {icon})))))
+          (label :style "color: #1abc9c" :text {title == "" ? "No Music" : title}))))
 
 (defwidget _player []
     (box :orientation 'v' :class 'player' :space-evenly false :hexpand false
@@ -145,12 +147,59 @@
         (scale :min 0 :active true :max 101 :orientation 'h' :halign "fill" :hexpand true :width 220 :value {percenttime} :onchange "mpc -q seek {}%")
         (label :class "number" :text "${currenttime}/${songlen} (${percenttime}%)" :halign 'end'))
       (box :space-evenly false :spacing 10 :halign 'fill'
-        (box :class "player-buttons"
-          (button :style "color: #ffc777" :onclick "bash ./scripts/music.sh --previous" (label :text ""))
-          (button :style "color: #ffc777" :onclick "bash ./scripts/music.sh --next" (label :text ""))
-          (button :style "color: #c3e88d" :onclick "bash ./scripts/music.sh --play" (label :text ""))
-          (button :style "color: #ff966c" :onclick "bash ./scripts/music.sh --pause" (label :text ""))
-          (button :style "color: #82aaff" :onclick "bash ./scripts/music.sh --shuffle" (label :text ""))
+        (box :space-evenly false
+          (button :style "color: #ffc777" :onclick "mpc prev" (label :text ""))
+          (button :style "color: #ffc777" :onclick "mpc next" (label :text ""))
+          (button :style "color: #c3e88d" :onclick "mpc play" (label :text ""))
+          (button :style "color: #ff966c" :onclick "mpc pause" (label :text ""))
+          (button :style "color: #82aaff" :onclick "mpc shuffle" (label :text ""))
           (button :onclick {repeat == "repeat-off-single-off" ? "mpc repeat on" : repeat == "repeat-on-single-off" ? "mpc single on" : "mpc repeat off; mpc single off"} :style { repeat == "repeat-off-single-off" ? "color: #ff757f" : "color: #c3e88d"} (label :text {repeat == "repeat-on-single-on" ? "" : ""})))
-        (scale :min 0 :active true :max 101 :orientation 'h' :halign "left" :width 100 :value {volume} :onchange "mpc volume {}")
-        (label :style 'font-family: "JetBrainsMono NF"; margin-left: -13px' :class "number" :text "${volume}%"))))
+        (scale :min 0 :active true :max 101 :orientation 'h' :halign "left" :width 100 :value {mpdvolume} :onchange "mpc volume {}")
+        (label :style 'font-family: "JetBrainsMono NF"; margin-left: -13px' :class "number" :text "${mpdvolume}%"))))
+
+;; Right
+;; It's WIP
+;;(defwidget _cal []
+;;  (box :orientation 'v' :class 'box' :space-evenly false
+;;      (box :space-evenly false
+;;        (label :text "${cal_month} ${cal_year}"))
+;;      (box :spacing 4 :vexpand true :height 40
+;;        (for i in cal_days
+;;          (label :text "${i}")))
+;;    (box :halign "start" :spacing 5 :hexpand false :valign "fill" :space-evenly false
+;;      (for i in month_days
+;;        (label :text "")))))
+(defwidget _cal []
+  (box :class "cal_out" :orientation 'v'
+    (box :class "cal_in"
+      (calendar :show-details false :show-heading false))))
+
+(defwidget sep_power []
+  (box :style "margin: -5px 0px; color: #4c566a;font-size: 20px"
+    (label :text "───────")))
+
+(defwidget _date []
+  (box :class 'box' :style 'color: #0db9d7; border-color: #7dcfff'
+    (button :onclick "bash ./scripts/pop.sh --cal"
+      (label :text "${date}"))))
+
+(defwidget _clock []
+  (box :class 'box' :style 'border-color: #1abc9c'
+    (button :style "color: #7aa2f7" :class "clock" :onclick { seconds ? "eww update seconds=false" : "eww update seconds=true"}
+    (label :text { seconds ? current_time_seconds : current_time}))))
+
+(defwidget _power []
+  (box :class "box" :style 'border-color: #bb9af7' :halign "center"
+  (button :class "shutdown power" :style "color: #f7768e":onclick "bash ./scripts/pop.sh --power" (label :text ""))))
+
+(defwidget _power_popup []
+  (box :orientation 'v' :class "powerpop" :space-evenly false :vexpand false :halign "center"
+    (button :onclick "systemctl poweroff" (box :style "color: #f7768e" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Shutdown")))
+    (sep_power)
+	(button :onclick "systemctl reboot" (box :style "color: #ff966c" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Reboot")))
+    (sep_power)
+    (button :onclick "swaylock" (box :style "color: #ffc777" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Lock")))
+    (sep_power)
+    (button :onclick "systemctl suspend" (box :style "color: #c3e88d" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Suspend")))
+	(sep_power)
+    (button :onclick "loginctl terminate-user $USER" (box :style "color: #82aaff" :space-evenly false (label :class "icon" :text " ") (label :class "power_txt" :text "Disconnect")))))
