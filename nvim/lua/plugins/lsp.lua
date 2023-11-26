@@ -16,19 +16,7 @@ return {
 	},
 	{
 		'smjonas/inc-rename.nvim',
-		config = function()
-			require'inc_rename'.setup()
-		end,
-	},
-	{
-		'kosayoda/nvim-lightbulb',
-		lazy = false,
-		config = function()
-			require'nvim-lightbulb'.setup({
-				autocmd = { enabled = false },
-				number = { enabled = true, hl = 'yellow' }
-			})
-		end,
+		opts = {}
 	},
 	{
 		'stevearc/aerial.nvim',
@@ -116,7 +104,6 @@ return {
 					'jsonls',
 					'tsserver',
 					'lua_ls',
-					'pyre',
 					'taplo',
 					'vimls'
 				},

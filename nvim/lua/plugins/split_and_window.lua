@@ -15,33 +15,6 @@ return {
 		opts = {}
 	},
 	{
-		'folke/edgy.nvim',
-		event = 'VeryLazy',
-		opts = {
-			left = {
-				{
-					title = 'Neo Tree',
-					ft = 'neo-tree',
-					open = "<leader>t",
-					filter = function(buf)
-						return vim.b[buf].neo_tree_source == "filesystem"
-					end,
-				}
-			},
-			bottom = {
-				{
-					title = "Terminal",
-					ft = 'toggleterm',
-					filter = function(buf, win)
-						return vim.api.nvim_win_get_config(win).relative == ""
-					end,
-				},
-				"Trouble",
-				{ ft = "qf", title = "QuickFix" },
-			}
-		}
-	},
-	{
 		'anuvyklack/windows.nvim',
 		event = 'WinNew',
 		dependencies = {

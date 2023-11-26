@@ -1,5 +1,4 @@
 return {
-	{ 'SmiteshP/nvim-navic', dependencies = 'neovim/nvim-lspconfig', opts = { lsp = { auto_attach = true } } },
 	{
 		'rebelot/heirline.nvim',
 		event = 'BufEnter',
@@ -109,7 +108,7 @@ return {
 			}
 			local fileIcon = {
 				init = function(self)
-					local filename = vim.api.nvim_buf_get_name(0)
+					local filename = self.filename
 					local extension = vim.fn.fnamemodify(filename, ":e")
 					self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
 				end,
@@ -122,21 +121,12 @@ return {
 			}
 			local fileName = {
 				init = function(self)
-					self.lfilename = vim.fn.fnamemodify(self.filename, ":.")
-					if self.lfilename == "" then self.lfilename = "[No Name]" end
+					if self.filename == "" then self.lfilename = "[No Name]" end
 				end,
 				hl = { fg = gethi("Directory").fg, bold = true },
-
-				flexible = 2,
-
 				{
 					provider = function(self)
-						return self.lfilename
-					end,
-				},
-				{
-					provider = function(self)
-						return vim.fn.pathshorten(self.lfilename)
+						return vim.fn.fnamemodify(self.filename, ":.")
 					end,
 				},
 			}
@@ -194,22 +184,6 @@ return {
 				percent,
 				space,
 				scrollBar),
-			}
-			local navic = {
-				condition = function() return require'nvim-navic'.is_available() end,
-				{
-					{
-						provider = function()
-							return require'nvim-navic'.get_location({
-								highlight = true,
-								click = true,
-								lsp = { auto_attach = true },
-							})
-						end,
-					},
-				},
-				{ provider = "" },
-				flexible = 3
 			}
 			local diagnostics = {
 
@@ -317,16 +291,14 @@ return {
 					provider = ")",
 				},
 			}
-			git = utils.surround(
-			{'', ""},
+			git = utils.surround({"", ""},
 			function()
-				if not conditions.is_git_repo then
-					return lightbg
+				if conditions.is_git_repo() then
+					return "terminal_black"
 				else
-					return 'terminal_black'
+					return lightbg
 				end
-			end,
-			{git})
+			end, {git})
 			--[[
 			local DAPMessages = {
 				condition = function()
@@ -375,8 +347,6 @@ return {
 				space,
 				fileNameBlock,
 				seps[1],
-				align,
-				navic,
 				align,
 				seps[2],
 				diagnostics,
@@ -438,10 +408,16 @@ return {
 					end
 				}
 			}
+			local shortFileName = {
+				provider = function(self)
+					return vim.fn.fnamemodify(self.filename, ":t")
+				end,
+				hl = { fg = gethi("Directory").fg, bold = true },
+			}
 			local fileNameBlockW = utils.insert(
 			fileNameBlockBase,
 			fileIcon,
-			utils.insert(fileName),
+			shortFileName,
 			space,
 			align)
 			local winBars = {
@@ -461,13 +437,6 @@ return {
 			}
 
 			-- Bufferline
-			local tablineBufnr = {
-				provider = function(self)
-					return tostring(self.bufnr) .. ". "
-				end,
-				hl = { italic = true },
-			}
-
 			local tablineFileName = {
 				provider = function(self)
 					local filename = self.filename
@@ -476,13 +445,12 @@ return {
 				end,
 				hl = function(self)
 					if self.is_active then
-						return { fg = 'purple', bold = true, italic = true }
+						return { fg = 'purple', bold = true, italic = true}
 					else
-						return { fg = 'terminal_black', italic = true, bold = false }
+						return { fg = util.darken(colors.fg, 0.7), italic = true}
 					end
 				end
 			}
-
 			local tablineFileFlags = {
 				{
 					condition = function(self)
@@ -520,14 +488,7 @@ return {
 					end,
 					name = "heirline_tabline_buffer_callback",
 				},
-				hl = function(self)
-					if self.is_active then
-						return { bg = lightbg }
-					else
-						return { bg = 'bg' }
-					end
-				end,
-				tablineBufnr,
+				hl = {bg = lightbg},
 				fileIcon,
 				tablineFileName,
 				tablineFileFlags,
@@ -557,17 +518,7 @@ return {
 				},
 			}
 
-			local tablineBufferBlock = utils.surround(
-			{ "", "" },
-			function(self)
-				if self.is_active then
-					return lightbg
-				else
-					return 'bg'
-				end
-			end,
-			{ tablineFileNameBlock, tablineCloseButton }
-			)
+			local tablineBufferBlock = utils.surround( {"", ""}, lightbg, {tablineFileNameBlock, tablineCloseButton})
 
 			local get_bufs = function()
 				return vim.tbl_filter(function(bufnr)

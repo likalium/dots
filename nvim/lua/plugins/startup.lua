@@ -58,7 +58,7 @@ return {
 							button( 'Float', 'fw', '󰈬  Find word', "<cmd>Telescope live_grep<cr>"),
 							button( 'Float', 'rf', '  Recent files', "<cmd>Telescope oldfiles<cr>"),
 							button( 'Float', 'fb', '  File Browser', '<cmd>Telescope file_browser<CR>'),
-							button( 'Float', 'q', '󰩈 Exit', '<cmd>q<CR>')
+							button( 'Float', 'q', '󰩈  Exit', '<cmd>q<CR>')
 						},
 						opts = { spacing = 1 }
 					},

@@ -10,5 +10,9 @@ return {
 			vim.g.mkdp_filetypes = { "markdown" }
 		end,
 		ft = { "markdown" },
-	}
+	},
+	-- Yuck
+	{ 'elkowar/yuck.vim', ft = 'yuck' },
+	-- ipynb files
+	{ 'meatballs/notebook.nvim', ft = 'ipynb' }
 }

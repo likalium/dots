@@ -3,9 +3,8 @@ return {
 	-- Indent
 	{
 		'lukas-reineke/indent-blankline.nvim',
+		main = "ibl",
 		event = 'BufRead',
-		opts = {
-			show_current_context = true,
-		}
+		opts = {}
 	}
 }
