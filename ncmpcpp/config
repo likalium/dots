@@ -1,0 +1,57 @@
+## MPD ##
+mpd_host = ~/.config/mpd/socket
+#mpd_port = 6600
+
+## SONGS ##
+lyrics_directory = ~/.lyrics
+mpd_music_dir = ~/Music
+message_delay_time = 4
+lyrics_fetchers = genius
+
+## NCMPCPP ##
+ncmpcpp_directory = ~/.config/ncmpcpp
+startup_screen = playlist
+header_visibility = yes
+browser_sort_mode = "name"
+cyclic_scrolling = yes
+follow_now_playing_lyrics = yes
+store_lyrics_in_song_dir = no
+fetch_lyrics_for_current_song_in_background = no
+allow_for_physical_item_deletion = no
+show_hidden_files_in_local_browser = no
+playlist_show_mpd_host = no
+playlist_show_remaining_time = no
+connected_message_on_startup = no
+header_text_scrolling = no
+jump_to_now_playing_song_at_start = yes
+external_editor="/usr/bin/nvim"
+use_console_editor = yes
+
+## FORMAT ##
+song_list_format = "{%a - %t}|{%f}"
+now_playing_prefix = "󰐊 "
+browser_playlist_prefix = "󰲹 "
+selected_item_prefix = " "
+modified_item_prefix = ''
+song_status_format = "{%a - %t ({%b,%y}|{%b})}|{%f}"
+empty_tag_marker = "None"
+
+
+## LOOK ##
+progressbar_look = "─■" #●
+user_interface = classic
+autocenter_mode = yes
+centered_cursor = yes
+playlist_display_mode = columns
+playlist_disable_highlight_delay= 2
+
+## VISUALIZER ##
+visualizer_data_source = ~/.config/mpd/fifo
+visualizer_output_name = "Visualizer feed"
+visualizer_fps = 60
+visualizer_spectrum_smooth_look=yes
+visualizer_in_stereo = yes
+#visualizer_type = spectrum
+
+## EXECUTE ##
+# execute_on_song_change = "bash /home/likalium/.config/eww/scripts/music.sh --art 2>/dev/null"
